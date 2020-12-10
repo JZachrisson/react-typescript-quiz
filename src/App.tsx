@@ -6,12 +6,14 @@ import QuestionCard from './components/QuestionCard';
 
 import {QuestionState, Difficulty} from './API'
 
+import { GlobalStyle, Wrapper } from './App.styles'
+
 const override = css`
 display: block;
 border-color: #3b84d2;
 `;
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -80,7 +82,9 @@ const App = () => {
   const TOTAL_QUESTIONS = 10
 
   return (
-    <div className="App">
+    <>
+    <GlobalStyle/>
+    <Wrapper>
       <h1>REACT QUIZ</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
             <button onClick={startTrivia} className="start">
@@ -88,7 +92,7 @@ const App = () => {
           </button>
       ): null}
 
-      {!gameOver ? <p className="score">Score:</p> : null }
+      {!gameOver ? <p className="score">Score: {score}</p> : null }
       {loading && <BeatLoader
           css={override}
           size={10}
@@ -112,7 +116,8 @@ const App = () => {
       
       }
  
-    </div>
+ </Wrapper>
+    </>
   );
 };
 
